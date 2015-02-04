@@ -100,7 +100,47 @@ def my_hard_func(x):
 
 #### Iterators
 
-In Python, I'm sure that you've seen some objects 
+In Python, I'm sure that you've seen the following pattern:
+
+```
+ls = [1,2,3,4]
+
+for item in ls:
+    print item
+```
+
+You can do this lists, as I showed above, you can also do this with dictionaries:
+
+```
+properties = {'name': "Sid", "location": "south san francisco"}
+for property, value in properties.iteritems():
+    print("%s %s" % (property, value))
+```
+
+This isn't some magic, built in thing in python that only belongs to dictionaries and lists. You too can write your own iterators!
+
+```python
+class numbers(object):
+    def __init__(self):
+        self.initial_number = 0
+    
+    def __iter__(self):
+        return self
+    
+    def next(self):
+        return self.initial_number
+        self.initial_number += 1
+
+number_iterator = numbers()
+for i in number_iterator:
+    print i
+```
+
+All you have to do is define an appropriate `next()` function for the iterator.
+
+#### Generators
+
+Generators are similar to iterators, except they can only be used once.      
 
 ### with/yield
 
