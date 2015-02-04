@@ -168,7 +168,33 @@ The `yield` keyword is very similar to return, except that it "pauses" the funct
 The `with` statement is used as follows:
 
 ```python
-
+# Open a file and write the string "hello" to it
+with open('filename.txt') as f:
+    f.write('hello')
 ```
 
+This keyword allows you to specify some code that you would like to be executed as a pair, with stuff that happens in the middle.  In this case, that means opening and closing a file (we wouldn't want a case in which a file is opened without it being closed).  This is also written such that if anything within the `with` statement throws an exception, it still closes the file.
 
+`open`, in this case, could have been written in a couple different ways:
+
+```python
+# As a class, assuming that file handlers are created with some function called `os.open`.
+# Note that THIS DOES ACTUALLY EXIT
+class open(object):
+    def __init__(self, filename):
+        self.filename = filename
+    def __enter__(self):
+         self.file_handler = os.open(self.filename)
+    def __exit__(self):
+         self.file_handler.close()
+
+# As a contextmanager
+from contextlib import contextmanager
+
+# Remember what this "@" does?
+@contextmanager
+def open(filename):
+    file_handler = os.open(self.filename)
+    yield file_handler
+    file_handler.close()
+```
