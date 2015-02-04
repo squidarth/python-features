@@ -55,17 +55,17 @@ def cached(func):
 
     return decorated_function
 
-def my_hard_func(x):
+def soe_hard_func(x):
     sum = 0
     for i in range(x):
         sum += i
         
-decorated_function = cached(my_hard_func)
+some_hard_func = cached(some_hard_func)
 
 # The following is equivalent
 
 @cached
-def my_hard_func(x):
+def some_hard_func(x):
     sum = 0
     for i in range(x):
         sum += i
