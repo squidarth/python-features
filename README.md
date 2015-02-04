@@ -140,8 +140,35 @@ All you have to do is define an appropriate `next()` function for the iterator.
 
 #### Generators
 
-Generators are similar to iterators, except they can only be used once.      
+Generators are similar to iterators, except they can only be used once, and are much more complicated.
 
-### with/yield
+Simple example:
+
+```python
+def simple_generator():
+    yield 1
+    yield 2
+    yield 3
+
+gen = simple_generator()
+
+for item in gen:
+    print item
+    
+# Prints:
+# 1
+# 2
+# 2
+```
+
+The `yield` keyword is very similar to return, except that it "pauses" the function and keeps its state. On each of iteration of the generator, it moves the next `yield` statement.
+
+### with
+
+The `with` statement is used as follows:
+
+```python
+
+```
 
 
